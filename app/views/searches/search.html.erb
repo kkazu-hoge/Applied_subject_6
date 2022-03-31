@@ -1,0 +1,55 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <% if @f_header_search_tgt_clf == '1' %><!--判定値 User:1, Book:2 -->
+      <h2>Users search for "<%= "#{@f_search_text}" %>" ?</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @f_result_obj.each do |user| %>
+            <tr>
+              <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+              <td><%= user.name %></td>
+              <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% elsif @f_header_search_tgt_clf == '2' %>
+       <h2>Books search for "<%= "#{@f_search_text}" %>" ?</h2>
+       <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @f_result_obj.each do |book| %>
+            <tr>
+              <td>
+                <%= link_to(book.user) do %>
+                  <%= image_tag book.user.get_profile_image, size:'50x50' %>
+                <% end %>
+              </td>
+              <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
+              <td><%= book.body %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        該当する一覧なし
+      <% end %>
+    </div>
+  </div>
+</div>
+

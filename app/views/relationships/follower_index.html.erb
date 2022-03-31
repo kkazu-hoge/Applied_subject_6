@@ -1,0 +1,34 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h2>Follower Users</h2>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @follower.blank? %>
+             <tr>
+               <td>ユーザーはいません</td>
+             </tr>
+          <% else %>
+            <% @followers.each do |follower| %>
+              <tr>
+                <td><%= image_tag User.find(follower.user_id).get_profile_image, size: '50x50' %></td>
+                <td><%= follower.user_name %></td>
+                <td>フォロー数:<%= Follower.find_by(user_id: follower.user_id).users.count %></td>
+                <td>フォロワー数:<%= User.find(follower.user_id).followers.count %></td>
+                <td><%= link_to 'Show', User.find(follower.user_id), class: "user_#{follower.user_id}" %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

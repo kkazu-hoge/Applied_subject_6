@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-md bg-da">
+  <div class="container">
+  <%= form_with url: search_searches_path, method: :get, class: "form-inline ml-auto" do |form| %>
+    <%= form.text_field :search_text, class: "form-group form-control mr-sm-2", placeholder: "入力欄" %>
+    <%= form.select :header_search_clf,
+      options_for_select(header_search_clf),                                #プルダウンの選択肢を配列で指定
+      { selected: 1 },                                                      #初期値はvalueが1の区分
+      { id: "header_search_clf", class: "form-group form-control mr-2"}    #htmlオプション
+    %>
+    <%= form.select :header_search_tgt_clf,
+      options_for_select(header_search_tgt_clf),
+      { selected: 1 },
+      { id: "header_search_tgt_clf", class: "form-group form-control mr-2"}
+    %>
+    <%= form.submit '検索', name: nil, class: "btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
+  </div>
+</nav>
