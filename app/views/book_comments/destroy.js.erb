@@ -1,0 +1,2 @@
+$("#comment_index").html("<%= escape_javascript(render "books/comment_index", {book: @book} ) %>");
+$("#comment_form").html("<%= escape_javascript(render "books/comment", {book_comment: @book_comment, book: @book} ) %>");
