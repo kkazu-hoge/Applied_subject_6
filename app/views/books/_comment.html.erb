@@ -1,0 +1,8 @@
+<%= form_with model: book_comment, url: book_book_comments_path(book.id), id: "comment_form", local:false do |f| %>
+  <div class="form-group">
+    <%= f.text_area :comment, autofocus: true, class: 'form-control book_body', rows: '5' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "送信", class: 'btn btn-secondary' %>
+  </div>
+<% end %>

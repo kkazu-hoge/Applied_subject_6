@@ -1,4 +1,1 @@
-<!--Viewテーブルの１レコードの要素のみ上書きする必要があるので
-id指定にbook.idなど一意になる情報を付加させる必要がある
-そうしないと意図しない要素へのAjax通信を引き起こす-->
-$('#fav_create_<%= @favorite_book.id %>').html("<%= j(render "books/favorite", {book: @favorite_book} ) %>");
+$("#fav_<%= @favorite_book.id %>").html("<%= escape_javascript(render "books/favorite", {book: @favorite_book} ) %>");

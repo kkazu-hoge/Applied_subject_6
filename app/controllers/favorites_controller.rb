@@ -5,7 +5,8 @@ class FavoritesController < ApplicationController
   def create
     @favorite_book = Book.find(params[:book_id])
     @favorite = current_user.favorites.new(book_id: @favorite_book.id)
-    if @favorite.save
+    @favorite.save
+    # if @favorite.save
       #view側にcreateを実行した画面IDの情報を持たせて
       #リクエストパラメータで判定してリダイレクト先を
       #変更する(v_index：booksのindex画面、v_show：booksのshow画面)
@@ -15,11 +16,11 @@ class FavoritesController < ApplicationController
       # else
       #   redirect_to book_path(book.id)
       # end
-    else
-      @books = Book.all
-      @book = Book.new
-      # render 'books/index'
-    end
+  #   else
+  #     @books = Book.all
+  #     @book = Book.new
+  #     # render 'books/index'
+  #   end
   end
 
   def destroy
